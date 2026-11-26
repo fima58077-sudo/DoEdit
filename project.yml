@@ -1,0 +1,45 @@
+name: DoEdit
+options:
+  bundleIdPrefix: com.myrepo
+  deploymentTarget:
+    iOS: "12.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  DoEdit:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.myrepo.doedit
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1,2"
+        GENERATE_INFOPLIST_FILE: NO
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: DoEdit
+        UILaunchStoryboardName: LaunchScreen
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: false
+        LSApplicationQueriesSchemes:
+          - apple-magnifier
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: IPA
+            LSHandlerRank: Alternate
+            LSItemContentTypes:
+              - com.apple.itunes.ipa
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
