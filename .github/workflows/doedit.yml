@@ -1,0 +1,17 @@
+name: Build DoEdit IPA
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install xcodegen
+      - run: xcodegen generate
+      - run: xcodebuild -project DoEdit.xcodeproj -scheme DoEdit -configuration Release -sdk iphoneos -destination generic/platform=iOS -derivedDataPath build CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY= build
+      - run: mkdir Payload && cp -R build/Build/Products/Release-iphoneos/DoEdit.app Payload/ && zip -qr DoEdit.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DoEdit-ipa
+          path: DoEdit.ipa
